@@ -4,7 +4,6 @@
     'name': 'HR Birthday Notification',
     'version' : "18.0.0.0",
     'category' : "Extra Tools",
-    'license': 'OPL-1',
     'summary': 'Show animated birthday popup & bar notification for employee birthdays',
     'description' : '''
             Shows an animated top bar when any employee has a birthday today
@@ -26,6 +25,5 @@
     },
     'installable': True,
     'auto_install': False,
-	"images":['static/description/Banner.gif'],
+	"images":['static/description/banner.gif'],
 }
-
