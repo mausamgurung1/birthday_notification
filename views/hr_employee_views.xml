@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="email_template_employee_birthday" model="mail.template">
+            <field name="name">Employee Birthday Wishes</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+
+            <field name="email_from">{{object.company_id.email_formatted or user.email_formatted}}</field>
+            <field name="email_to">{{object.work_email}}</field>
+
+            <field name="subject">🎉 Happy Birthday {{object.name}} 🎂</field>
+
+            <field name="body_html" type="html">
+                <div style="font-family:Arial; background:#f4f6f8; padding:20px;">
+                    <div style="max-width:500px; margin:auto; background:#fff; border-radius:8px; text-align:center; padding:25px;">
+                        
+                        <h2>🎂 Happy Birthday 🎉</h2>
+
+                        <p>Dear <strong><t t-esc="object.name"/></strong>,</p>
+
+                        <p>
+                            Wishing you happiness, success, and a wonderful year ahead.
+                            Enjoy your special day!
+                        </p>
+
+                        <p style="margin-top:20px;">
+                            Regards,<br/>
+                            <strong><t t-esc="user.company_id.name"/></strong>
+                        </p>
+
+                    </div>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

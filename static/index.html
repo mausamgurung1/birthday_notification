@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+  <title>Employee Birthday Reminder</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f4f6fb; }
+
+    .topnav {
+      background: #fff; padding: 14px 30px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid #e8ecf0; position: sticky; top: 0; z-index: 100;
+    }
+    .topnav .brand { font-size: 18px; font-weight: 700; color: #5082c4; display: flex; align-items: center; gap: 8px; }
+    .topnav .brand i { color: #E91E63; }
+    .topnav .nav-links a { font-size: 13px; color: #555; text-decoration: none; margin-left: 20px; }
+    .topnav .nav-links a:hover { color: #5082c4; }
+
+    .hero {
+      background: linear-gradient(135deg, #5082c4 0%, #714B67 100%);
+      color: #fff; padding: 50px 30px 40px; text-align: center;
+    }
+    .hero h1 { font-size: clamp(22px, 4vw, 36px); font-weight: 700; margin-bottom: 10px; }
+    .hero p { font-size: 15px; opacity: 0.85; max-width: 520px; margin: 0 auto 20px; }
+    .hero .badges span {
+      display: inline-block; margin: 4px;
+      padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    }
+    .badge-community { background: #008596; color: #fff; }
+    .badge-enterprise { background: #FFC107; color: #fff; }
+    .badge-sh { background: #fff3; color: #fff; border: 1px solid #fff5; }
+
+    .main { max-width: 900px; margin: 32px auto; padding: 0 16px 60px; }
+    .section-head { margin-bottom: 18px; }
+    .section-head h4 { font-size: 18px; font-weight: 700; color: #1a1a2e; }
+    .section-head p { font-size: 13px; color: #888; margin-top: 4px; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 32px; }
+    @media(max-width:600px){ .two-col { grid-template-columns: 1fr; } }
+
+    .feature-pill {
+      background: #fff; border-radius: 14px; padding: 16px 18px;
+      box-shadow: 0 2px 8px #0001; display: flex; align-items: center; gap: 14px;
+    }
+    .pill-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
+    }
+    .pill-icon.pink  { background: #fce4ec; color: #E91E63; }
+    .pill-icon.blue  { background: #e3f0ff; color: #5082c4; }
+    .pill-icon.green { background: #e8f5e9; color: #4CAF50; }
+    .pill-icon.amber { background: #fff8e1; color: #f59e0b; }
+    .pill-title { font-size: 13px; font-weight: 600; color: #1a1a2e; }
+    .pill-desc  { font-size: 12px; color: #888; margin-top: 3px; }
+
+    /* SCREENSHOTS */
+    .screenshot-card {
+      background: #fff; border-radius: 16px; padding: 20px;
+      box-shadow: 0 2px 12px #0001; margin-bottom: 16px;
+    }
+    .screenshot-card h6 { font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
+    .screenshot-card .sc-desc { font-size: 12px; color: #888; margin-bottom: 14px; }
+    .screenshot-card img { width: 100%; border-radius: 10px; border: 1px solid #e8ecf0; display: block; }
+    .screenshot-placeholder {
+      width: 100%; height: 180px; border-radius: 10px;
+      border: 2px dashed #d0d7e3; background: #f8f9fc;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: #aaa; font-size: 13px; gap: 8px;
+    }
+    .screenshot-placeholder i { font-size: 28px; color: #c8d2e0; }
+    .screenshot-placeholder code { font-size: 12px; background: #eef0f5; padding: 2px 6px; border-radius: 4px; color: #5082c4; }
+
+    /* EMPLOYEE CARDS */
+    .emp-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    .emp-card {
+      background: #fff; border-radius: 16px; padding: 16px;
+      box-shadow: 0 2px 10px #0001; cursor: pointer;
+      border: 2px solid transparent; transition: border-color 0.2s, transform 0.15s;
+    }
+    .emp-card:hover { transform: translateY(-2px); border-color: #5082c420; }
+    .emp-card.selected { border-color: #5082c4; background: #f0f5ff; }
+    .emp-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 15px; flex-shrink: 0;
+    }
+    .av-pink   { background: #fce4ec; color: #E91E63; }
+    .av-blue   { background: #e3f0ff; color: #5082c4; }
+    .av-teal   { background: #e0f5ee; color: #009688; }
+    .av-amber  { background: #fff8e1; color: #f59e0b; }
+    .av-purple { background: #f3e5f5; color: #9c27b0; }
+    .av-coral  { background: #fbe9e7; color: #ff5722; }
+    .emp-name { font-weight: 600; font-size: 14px; color: #1a1a2e; }
+    .emp-role { font-size: 12px; color: #888; }
+    .emp-footer { display: flex; justify-content: space-between; align-items: center; }
+    .emp-dept { font-size: 11px; color: #aaa; }
+    .bday-chip { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+    .chip-today { background: #e8f5e9; color: #2e7d32; }
+    .chip-soon  { background: #fff8e1; color: #e65100; }
+    .chip-later { background: #f5f5f5; color: #888; }
+
+    /* EMAIL BOX */
+    .email-box {
+      background: #fff; border-radius: 16px; padding: 22px;
+      box-shadow: 0 2px 12px #0001;
+    }
+    .email-box h5 { font-size: 15px; font-weight: 700; color: #1a1a2e; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .email-box h5 i { color: #5082c4; }
+    .field-row { margin-bottom: 12px; }
+    .field-label { font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .field-val {
+      background: #f8f9fc; border: 1px solid #e8ecf0; border-radius: 10px;
+      padding: 9px 12px; font-size: 13px; color: #333; width: 100%;
+    }
+    textarea.field-val { resize: none; min-height: 130px; line-height: 1.6; font-family: 'Inter', sans-serif; }
+    .btn-row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+    .btn-send {
+      background: #5082c4; color: #fff; border: none;
+      padding: 9px 22px; border-radius: 10px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .btn-send:hover { background: #3a6ab0; }
+    .btn-outline {
+      background: transparent; color: #5082c4; border: 1.5px solid #5082c4;
+      padding: 9px 18px; border-radius: 10px; font-size: 13px; font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-outline:hover { background: #f0f5ff; }
+    .btn-ghost {
+      background: transparent; color: #aaa; border: 1.5px solid #e8ecf0;
+      padding: 9px 18px; border-radius: 10px; font-size: 13px; cursor: pointer;
+    }
+    .btn-ghost:hover { background: #f5f5f5; }
+
+    /* LINKEDIN */
+    .linkedin-strip {
+      background: #fff; border-radius: 16px; padding: 22px 24px;
+      box-shadow: 0 2px 12px #0001; display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-top: 32px;
+    }
+    .linkedin-strip .li-text h5 { font-size: 15px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
+    .linkedin-strip .li-text p  { font-size: 13px; color: #888; }
+    .btn-linkedin {
+      background: #0A66C2; color: #fff !important; border: none;
+      padding: 10px 22px; border-radius: 10px; font-size: 13px; font-weight: 600;
+      text-decoration: none !important; display: inline-flex; align-items: center; gap: 8px;
+      transition: background 0.2s;
+    }
+    .btn-linkedin:hover { background: #084d92; }
+
+    .toast-msg {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      background: #2e7d32; color: #fff; padding: 10px 22px;
+      border-radius: 20px; font-size: 13px; font-weight: 600;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 999;
+    }
+    .toast-msg.show { opacity: 1; }
+
+    .divider { height: 1px; background: #e8ecf0; margin: 32px 0; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<!-- <div class="topnav">
+  <div class="brand"><i class="fa fa-birthday-cake"></i> BirthdayReminder</div>
+  <div class="nav-links">
+    <a href="#">Dashboard</a>
+    <a href="#">Employees</a>
+    <a href="#">Settings</a>
+  </div>
+</div> -->
+
+<!-- HERO -->
+<div class="hero">
+  <h1><i class="fa fa-birthday-cake me-2"></i>Employee Birthday Reminder</h1>
+  <p>Auto-send personalized birthday emails to employees — zero manual effort.</p>
+  <div class="badges">
+    <span class="badge-community">Community</span>
+    <span class="badge-enterprise">Enterprise</span>
+    <span class="badge-sh">Odoo.sh</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- FEATURES -->
+  <div class="section-head"><h4>Key Features</h4><p>Everything you need for seamless birthday automation</p></div>
+  <div class="two-col">
+    <div class="feature-pill">
+      <div class="pill-icon pink"><i class="fa fa-calendar-alt"></i></div>
+      <div><div class="pill-title">Set Date of Birth</div><div class="pill-desc">Configure birthdate per employee or customer.</div></div>
+    </div>
+    <div class="feature-pill">
+      <div class="pill-icon blue"><i class="fa fa-envelope-open-text"></i></div>
+      <div><div class="pill-title">Auto Birthday Email</div><div class="pill-desc">Emails sent automatically on the birthday.</div></div>
+    </div>
+    <div class="feature-pill">
+      <div class="pill-icon green"><i class="fa fa-clock"></i></div>
+      <div><div class="pill-title">Scheduler Config</div><div class="pill-desc">Set exact send time for automatic dispatch.</div></div>
+    </div>
+    <div class="feature-pill">
+      <div class="pill-icon amber"><i class="fa fa-paint-brush"></i></div>
+      <div><div class="pill-title">Custom Templates</div><div class="pill-desc">Personalize email templates with dynamic fields.</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SCREENSHOTS -->
+  <div class="section-head"><h4>Screenshots</h4><p>See how it looks inside Odoo</p></div>
+
+  <div class="screenshot-card">
+    <h6>1. Bithday Notification</h6>
+    <div class="sc-desc">Birthday Notification Show like this in every employee.</div>
+
+    <img src="birthday.png" alt="Set Date of Birth"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="screenshot-placeholder" style="display:none;">
+      <i class="fa fa-image"></i>
+      
+    </div>
+  </div>
+
+
+  <div class="screenshot-card">
+    <h6>3. Birthday Email Preview</h6>
+    <div class="sc-desc">This is how the birthday greeting email looks when sent to the employee.</div>
+    <img src="image.png" alt="Email Preview"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="screenshot-placeholder" style="display:none;">
+      <i class="fa fa-image"></i>
+     
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- LINKEDIN -->
+  <div class="linkedin-strip">
+    <div class="li-text">
+      <h5>Let's connect on LinkedIn!</h5>
+      <p>Feel free to reach out — always happy to connect and collaborate.</p>
+    </div>
+    <!-- Replace YOUR_LINKEDIN_URL with your actual LinkedIn profile URL -->
+    <a class="btn-linkedin" href="https://www.linkedin.com/in/mausam-gurung-848527232/" target="_blank">
+      <i class="fab fa-linkedin"></i> Connect on LinkedIn
+    </a>
+  </div>
+
+</div>
+
+<div class="toast-msg" id="toast"></div>
+
+<script>
+const employees = [
+
+];
+const chipMap = {today:{cls:"chip-today",lbl:"🎂 Today"},soon:{cls:"chip-soon",lbl:"Soon"},later:{cls:"chip-later",lbl:""}};
+let sel = null;
+
+document.getElementById('empGrid').innerHTML = employees.map(e=>{
+  const c = chipMap[e.status];
+  return `<div class="emp-card" id="ec-${e.id}" onclick="pick(${e.id})">
+    <div class="emp-top">
+      <div class="avatar ${e.av}">${e.initials}</div>
+      <div><div class="emp-name">${e.name}</div><div class="emp-role">${e.role}</div></div>
+    </div>
+    <div class="emp-footer">
+      <span class="emp-dept">${e.dept} · ${e.bday}</span>
+      <span class="bday-chip ${c.cls}">${c.lbl||e.bday}</span>
+    </div>
+  </div>`;
+}).join('');
+
+function pick(id){
+  if(sel) document.getElementById('ec-'+sel)?.classList.remove('selected');
+  sel=id;
+  document.getElementById('ec-'+id)?.classList.add('selected');
+  const e=employees.find(x=>x.id===id);
+  document.getElementById('fTo').textContent=`${e.name} <${e.email}>`;
+  document.getElementById('fSubj').textContent=`Happy Birthday, ${e.name.split(' ')[0]}! 🎂`;
+  document.getElementById('fBody').value=`Hi ${e.name.split(' ')[0]},\n\nWishing you a very Happy Birthday from the entire team! 🎉\n\nThank you for your amazing contributions as our ${e.role}. We're grateful to have you in our ${e.dept} team.\n\nHope your day is filled with joy and celebration!\n\nWarm regards,\nHR Team`;
+}
+function sendEmail(){
+  if(!sel){toast("Please select an employee first.");return;}
+  toast("Email sent to "+employees.find(x=>x.id===sel).name+"! 🎉");
+}
+function copyMsg(){
+  if(!sel){toast("Nothing to copy.");return;}
+  navigator.clipboard?.writeText(document.getElementById('fBody').value);
+  toast("Message copied!");
+}
+function clearSel(){
+  if(sel) document.getElementById('ec-'+sel)?.classList.remove('selected');
+  sel=null;
+  document.getElementById('fTo').textContent='— select an employee —';
+  document.getElementById('fSubj').textContent='—';
+  document.getElementById('fBody').value='Select an employee to generate the birthday message.';
+}
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+</script>
+</body>
+</html>

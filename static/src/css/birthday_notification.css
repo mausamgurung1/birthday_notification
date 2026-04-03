@@ -1,0 +1,365 @@
+
+#bday-global-bar.bday-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: linear-gradient(90deg,
+        #ff6b6b 0%, #ffd93d 20%, #6bcb77 40%,
+        #4d96ff 60%, #c77dff 80%, #ff6b6b 100%);
+    background-size: 300% 100%;
+    animation: bday-bar-gradient 4s ease infinite,
+               bday-bar-shimmer 2s ease infinite;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0,0,0,.3);
+    letter-spacing: .3px;
+    transform: translateY(-100%);
+    transition: transform .5s cubic-bezier(.34,1.56,.64,1);
+    box-shadow: 0 3px 16px rgba(0,0,0,.25);
+}
+
+#bday-global-bar.bday-bar.bday-bar-visible {
+    transform: translateY(0);
+}
+
+.bday-bar-icon {
+    font-size: 20px;
+    animation: bday-icon-bounce .8s ease infinite alternate;
+}
+
+.bday-bar-text {
+    flex: 1;
+    text-align: center;
+    max-width: 700px;
+}
+
+.bday-bar-close {
+    background: rgba(255,255,255,.25);
+    border: none;
+    color: #fff;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s;
+    flex-shrink: 0;
+}
+.bday-bar-close:hover { background: rgba(255,255,255,.45); }
+
+.bday-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+    transition: background .4s ease, backdrop-filter .4s ease;
+    pointer-events: none;
+}
+.bday-overlay.bday-overlay-active {
+    background: rgba(0, 0, 0, .45);
+    backdrop-filter: blur(4px);
+    pointer-events: all;
+}
+
+.bday-popup {
+    position: relative;
+    width: min(520px, 92vw);
+    max-height: 90vh;
+    overflow: hidden;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #fff9f0 0%, #fff0fb 50%, #f0f8ff 100%);
+    box-shadow:
+        0 32px 80px rgba(0,0,0,.3),
+        0 0 0 3px rgba(255,255,255,.8) inset;
+    transform: scale(.6) translateY(60px);
+    opacity: 0;
+    transition:
+        transform .6s cubic-bezier(.34,1.56,.64,1),
+        opacity .4s ease;
+    padding: 36px 32px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.bday-popup.bday-popup-active {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.bday-confetti-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+.bday-confetti {
+    position: absolute;
+    top: -20px;
+    animation: bday-confetti-fall linear infinite;
+    border-radius: 2px;
+}
+@keyframes bday-confetti-fall {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    80%  { opacity: 1; }
+    100% { transform: translateY(110%) rotate(720deg); opacity: 0; }
+}
+
+.bday-balloon-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+.bday-balloon {
+    position: absolute;
+    bottom: -60px;
+    animation: bday-balloon-rise ease-in-out infinite alternate;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,.15));
+}
+@keyframes bday-balloon-rise {
+    0%   { transform: translateY(0)   rotate(-6deg); }
+    50%  { transform: translateY(-60px) rotate(6deg); }
+    100% { transform: translateY(-110px) rotate(-4deg); }
+}
+
+.bday-popup-header {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.bday-cake-wrap {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bday-cake-emoji {
+    font-size: 54px;
+    animation: bday-cake-pulse 1.5s ease infinite;
+    position: relative;
+    z-index: 1;
+}
+.bday-sparkle-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    background: conic-gradient(
+        #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #c77dff, #ff6b6b
+    ) border-box;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    animation: bday-spin 3s linear infinite;
+}
+
+.bday-popup-title {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: bday-title-wave 2s ease infinite;
+}
+
+.bday-popup-subtitle {
+    margin: 0;
+    color: #888;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.bday-employees {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    width: 100%;
+    max-height: 240px;
+    overflow-y: auto;
+    padding: 4px;
+}
+.bday-employees::-webkit-scrollbar { width: 4px; }
+.bday-employees::-webkit-scrollbar-thumb {
+    background: #ddd; border-radius: 4px;
+}
+
+.bday-emp-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,.8);
+    border: 1px solid rgba(255,200,200,.4);
+    border-radius: 16px;
+    padding: 10px 16px;
+    min-width: 180px;
+    max-width: 210px;
+    animation: bday-card-pop .5s cubic-bezier(.34,1.56,.64,1) both;
+    box-shadow: 0 4px 16px rgba(0,0,0,.06);
+    transition: transform .2s;
+}
+.bday-emp-card:hover { transform: translateY(-3px) scale(1.02); }
+
+.bday-emp-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+.bday-emp-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow:
+        0 0 0 3px #ffd93d,
+        0 4px 12px rgba(0,0,0,.15);
+    animation: bday-avatar-glow 2s ease infinite alternate;
+}
+.bday-emp-badge {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    font-size: 16px;
+    animation: bday-badge-bounce .7s ease infinite alternate;
+}
+
+.bday-emp-info { overflow: hidden; }
+.bday-emp-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.bday-emp-role {
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 2px;
+}
+
+.bday-progress-wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 5px;
+    background: rgba(0,0,0,.07);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.bday-progress-bar {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff);
+    border-radius: 10px;
+    transform-origin: left;
+}
+.bday-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 10;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,0,0,.08);
+    color: #666;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s, transform .2s;
+}
+.bday-close-btn:hover {
+    background: rgba(0,0,0,.15);
+    transform: rotate(90deg);
+}
+
+@keyframes bday-bar-gradient {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes bday-bar-shimmer {
+    0%, 100% { filter: brightness(1); }
+    50%       { filter: brightness(1.1); }
+}
+
+@keyframes bday-icon-bounce {
+    from { transform: translateY(0) scale(1); }
+    to   { transform: translateY(-4px) scale(1.15); }
+}
+
+@keyframes bday-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes bday-cake-pulse {
+    0%, 100% { transform: scale(1) rotate(-3deg); }
+    50%       { transform: scale(1.1) rotate(3deg); }
+}
+
+@keyframes bday-title-wave {
+    0%, 100% { letter-spacing: .5px; }
+    50%       { letter-spacing: 2px; }
+}
+
+@keyframes bday-card-pop {
+    from { transform: scale(.7); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+@keyframes bday-avatar-glow {
+    from { box-shadow: 0 0 0 3px #ffd93d, 0 4px 12px rgba(0,0,0,.15); }
+    to   { box-shadow: 0 0 0 3px #ff6b6b, 0 4px 20px rgba(255,107,107,.4); }
+}
+
+@keyframes bday-badge-bounce {
+    from { transform: translateY(0) scale(1); }
+    to   { transform: translateY(-4px) scale(1.2); }
+}
+
+@media (max-width: 480px) {
+    .bday-popup { padding: 24px 16px 20px; }
+    .bday-popup-title { font-size: 24px; }
+    .bday-emp-card { min-width: 100%; }
+    .bday-cake-emoji { font-size: 44px; }
+}
