@@ -1,252 +1,151 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
-  <title>Employee Birthday Reminder</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #f4f6fb; }
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <section>
+            <div class="bg-white mt-4">
+                <div class="position-relative overflow-hidden" style="border-radius:20px;">
+                    <div class="row position-relative pt-lg-3 pb-lg-3 px-lg-5 p-md-4 d-flex w-100 gx-0">
+                        <section class="bg-transparent">
+                            <div class="container mt-3 px-3">
+                                <div class="row shadow gx-0" style="border-radius: 35px;">
+                                    <div style="border-radius: 20px; padding: 1%; background-color:#fff;">
 
-    .topnav {
-      background: #fff; padding: 14px 30px;
-      display: flex; align-items: center; justify-content: space-between;
-      border-bottom: 1px solid #e8ecf0; position: sticky; top: 0; z-index: 100;
-    }
-    .topnav .brand { font-size: 18px; font-weight: 700; color: #5082c4; display: flex; align-items: center; gap: 8px; }
-    .topnav .brand i { color: #E91E63; }
-    .topnav .nav-links a { font-size: 13px; color: #555; text-decoration: none; margin-left: 20px; }
-    .topnav .nav-links a:hover { color: #5082c4; }
+                                        <div class="mt-lg-4 text-center">
+                                            <div class="row px-lg-5 px-2">
+                                                <div class="col-12 pb-lg-5 pb-3 d-flex justify-content-center">
+                                                    <div class="d-flex justify-content-center" style="width: 45%;">
+                                                        <div class="text-center p-1" style="border:1px solid #008596; font-size: 1.4vw; color:#fff; margin:0 3px; border-radius: 20px; background-color: #008596;">
+                                                            <span>Community</span>
+                                                        </div>
+                                                        <div class="text-center p-1" style="border:1px solid #FFC107; font-size: 1.4vw; color:#fff; margin:0 3px; border-radius: 20px; background-color: #FFC107;">
+                                                            <span>Enterprise</span>
+                                                        </div>
+                                                        <div class="text-center p-1" style="border:1px solid #5082c4; font-size: 1.4vw; color:#fff; margin: 0 3px; border-radius: 20px; background-color: #5082c4;">
+                                                            <span>Odoo.sh</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <h1 class="text-center mb-4" style="font-size: clamp(14px, 6vw, 40px); color: #5082c4; font-weight: bold;">
+                                                        Birthday Reminder Odoo Apps
+                                                    </h1>
+                                                </div>
+                                                <div class="row gx-0 pb-3">
+                                                    <div class="col-lg-8 col-12 align-content-center">
+                                                        <div>
+                                                            <h2 class="m-2 opacity-50" style="font-size: clamp(14px, 4vw, 23px);"><b>
+                                                                
+                                                                Auto-Send Happy Birthday Emails from Odoo
+                                                            </b></h2>
+                                                            <h2 class="m-2 opacity-50" style="font-size: clamp(14px, 4vw, 23px);"><b>
+                                                                Smart Birthday Alerts for Employee
+                                                            </b></h2>
+                                                            <h3 class="m-2 opacity-50" style="font-size: clamp(14px, 4vw, 23px);"><b>
+                                                                 Send Personalized Birthday Emails Without Manual Effort
+                                                            </b></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p style="font-family:Inter; font-weight:normal; font-size:18px; text-align: left;">
+                                                     This module automatically sends an email to employee on their Birthdays.
+                                                </p>
 
-    .hero {
-      background: linear-gradient(135deg, #5082c4 0%, #714B67 100%);
-      color: #fff; padding: 50px 30px 40px; text-align: center;
-    }
-    .hero h1 { font-size: clamp(22px, 4vw, 36px); font-weight: 700; margin-bottom: 10px; }
-    .hero p { font-size: 15px; opacity: 0.85; max-width: 520px; margin: 0 auto 20px; }
-    .hero .badges span {
-      display: inline-block; margin: 4px;
-      padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
-    }
-    .badge-community { background: #008596; color: #fff; }
-    .badge-enterprise { background: #FFC107; color: #fff; }
-    .badge-sh { background: #fff3; color: #fff; border: 1px solid #fff5; }
+                                                    <div style="margin-top:20px; text-align:center;">
+                                                        
+                                                        <a href="https://www.linkedin.com/in/mausam-gurung-848527232/" target="_blank"
+                                                          style="
+                                                            display:inline-block;
+                                                            text-decoration:none;
+                                                            background:linear-gradient(135deg,#0A66C2,#004182);
+                                                            color:#ffffff;
+                                                            padding:12px 22px;
+                                                            border-radius:30px;
+                                                            font-size:16px;
+                                                            font-weight:600;
+                                                            letter-spacing:0.5px;
+                                                            box-shadow:0 6px 18px rgba(10,102,194,0.35);
+                                                            transition:all 0.3s ease;
+                                                          "
+                                                          onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.2)';"
+                                                          onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0 6px 18px rgba(10,102,194,0.35)';"
+                                                        >
+                                                            <i class="fab fa-linkedin" style="margin-right:8px;"></i>
+                                                            Connect with me on LinkedIn
+                                                        </a>
 
-    .main { max-width: 900px; margin: 32px auto; padding: 0 16px 60px; }
-    .section-head { margin-bottom: 18px; }
-    .section-head h4 { font-size: 18px; font-weight: 700; color: #1a1a2e; }
-    .section-head p { font-size: 13px; color: #888; margin-top: 4px; }
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
 
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 32px; }
-    @media(max-width:600px){ .two-col { grid-template-columns: 1fr; } }
+                        <!-- Menu Bar -->
+                        <section class="container mt-5 bg-transparent text-center">
+                            <ul role="tablist" class="nav nav-tabs justify-content-around p-2 align-items-center" data-tabs="tabs" style="border:none; background-color: #3f8ebacf; border-radius: 35px; margin:0 auto;">
+                                <li class="nav-item" style="width: max(100px, 15vw);">
+                                    <a href="#feature_tab" data-bs-toggle="tab" aria-expanded="true" class="show nav-link active" style="font-size: clamp(14px, 4vw, 20px); border-radius:25px; color:#000; border:1px solid transparent">Features</a>
+                                </li>
+                            </ul>
 
-    .feature-pill {
-      background: #fff; border-radius: 14px; padding: 16px 18px;
-      box-shadow: 0 2px 8px #0001; display: flex; align-items: center; gap: 14px;
-    }
-    .pill-icon {
-      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center; font-size: 18px;
-    }
-    .pill-icon.pink  { background: #fce4ec; color: #E91E63; }
-    .pill-icon.blue  { background: #e3f0ff; color: #5082c4; }
-    .pill-icon.green { background: #e8f5e9; color: #4CAF50; }
-    .pill-icon.amber { background: #fff8e1; color: #f59e0b; }
-    .pill-title { font-size: 13px; font-weight: 600; color: #1a1a2e; }
-    .pill-desc  { font-size: 12px; color: #888; margin-top: 3px; }
+                            <div class="tab-content">
+                                <!-- Features -->
+                                <div id="feature_tab" class="tab-pane active">
 
-    /* SCREENSHOTS */
-    .screenshot-card {
-      background: #fff; border-radius: 16px; padding: 20px;
-      box-shadow: 0 2px 12px #0001; margin-bottom: 16px;
-    }
-    .screenshot-card h6 { font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
-    .screenshot-card .sc-desc { font-size: 12px; color: #888; margin-bottom: 14px; }
-    .screenshot-card img { width: 100%; border-radius: 10px; border: 1px solid #e8ecf0; display: block; }
-    .screenshot-placeholder {
-      width: 100%; height: 180px; border-radius: 10px;
-      border: 2px dashed #d0d7e3; background: #f8f9fc;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      color: #aaa; font-size: 13px; gap: 8px;
-    }
-    .screenshot-placeholder i { font-size: 28px; color: #c8d2e0; }
-    .screenshot-placeholder code { font-size: 12px; background: #eef0f5; padding: 2px 6px; border-radius: 4px; color: #5082c4; }
+                                  
 
-    /* EMPLOYEE CARDS */
-    .emp-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-    .emp-card {
-      background: #fff; border-radius: 16px; padding: 16px;
-      box-shadow: 0 2px 10px #0001; cursor: pointer;
-      border: 2px solid transparent; transition: border-color 0.2s, transform 0.15s;
-    }
-    .emp-card:hover { transform: translateY(-2px); border-color: #5082c420; }
-    .emp-card.selected { border-color: #5082c4; background: #f0f5ff; }
-    .emp-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-    .avatar {
-      width: 44px; height: 44px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 15px; flex-shrink: 0;
-    }
-    .av-pink   { background: #fce4ec; color: #E91E63; }
-    .av-blue   { background: #e3f0ff; color: #5082c4; }
-    .av-teal   { background: #e0f5ee; color: #009688; }
-    .av-amber  { background: #fff8e1; color: #f59e0b; }
-    .av-purple { background: #f3e5f5; color: #9c27b0; }
-    .av-coral  { background: #fbe9e7; color: #ff5722; }
-    .emp-name { font-weight: 600; font-size: 14px; color: #1a1a2e; }
-    .emp-role { font-size: 12px; color: #888; }
-    .emp-footer { display: flex; justify-content: space-between; align-items: center; }
-    .emp-dept { font-size: 11px; color: #aaa; }
-    .bday-chip { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
-    .chip-today { background: #e8f5e9; color: #2e7d32; }
-    .chip-soon  { background: #fff8e1; color: #e65100; }
-    .chip-later { background: #f5f5f5; color: #888; }
+                                    <div class="row text-dark mt-5">
+                                        <!-- 1 -->
+                                        <div class="col-12 mt-5">
+                                            <div>
+                                                <h2>
+                                                    <b>How Employee show the other birthday</b>
+                                                </h2>
+                                                <p class="mt-4 h4" style="font-size: larger; font-weight: 300;">
+                                                     It show the employee birthday in Dashboard only one time .
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-3 mb-5 d-flex justify-content-center">
+                                            <img class="w-100 p-lg-0 p-3" src="birthday.png" style="border-radius: 20px;">
+                                        </div>
+                                        <hr class="d-lg-none">
 
-    /* EMAIL BOX */
-    .email-box {
-      background: #fff; border-radius: 16px; padding: 22px;
-      box-shadow: 0 2px 12px #0001;
-    }
-    .email-box h5 { font-size: 15px; font-weight: 700; color: #1a1a2e; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-    .email-box h5 i { color: #5082c4; }
-    .field-row { margin-bottom: 12px; }
-    .field-label { font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-    .field-val {
-      background: #f8f9fc; border: 1px solid #e8ecf0; border-radius: 10px;
-      padding: 9px 12px; font-size: 13px; color: #333; width: 100%;
-    }
-    textarea.field-val { resize: none; min-height: 130px; line-height: 1.6; font-family: 'Inter', sans-serif; }
-    .btn-row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
-    .btn-send {
-      background: #5082c4; color: #fff; border: none;
-      padding: 9px 22px; border-radius: 10px; font-size: 13px; font-weight: 600;
-      cursor: pointer; transition: background 0.2s;
-    }
-    .btn-send:hover { background: #3a6ab0; }
-    .btn-outline {
-      background: transparent; color: #5082c4; border: 1.5px solid #5082c4;
-      padding: 9px 18px; border-radius: 10px; font-size: 13px; font-weight: 600;
-      cursor: pointer;
-    }
-    .btn-outline:hover { background: #f0f5ff; }
-    .btn-ghost {
-      background: transparent; color: #aaa; border: 1.5px solid #e8ecf0;
-      padding: 9px 18px; border-radius: 10px; font-size: 13px; cursor: pointer;
-    }
-    .btn-ghost:hover { background: #f5f5f5; }
+  
 
-    /* LINKEDIN */
-    .linkedin-strip {
-      background: #fff; border-radius: 16px; padding: 22px 24px;
-      box-shadow: 0 2px 12px #0001; display: flex; align-items: center;
-      justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-top: 32px;
-    }
-    .linkedin-strip .li-text h5 { font-size: 15px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
-    .linkedin-strip .li-text p  { font-size: 13px; color: #888; }
-    .btn-linkedin {
-      background: #0A66C2; color: #fff !important; border: none;
-      padding: 10px 22px; border-radius: 10px; font-size: 13px; font-weight: 600;
-      text-decoration: none !important; display: inline-flex; align-items: center; gap: 8px;
-      transition: background 0.2s;
-    }
-    .btn-linkedin:hover { background: #084d92; }
+                                         <div class="col-12 mt-5">
+                                            <div>
+                                                <h2>
+                                                    <b>Email</b>
+                                                </h2>
+                                                <p class="mt-4 h4" style="font-size: larger; font-weight: 300;">
+                                                    This is how an Email will be generated to sent greetings to employee.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-3 mb-5 d-flex justify-content-center">
+                                            <img src="image.png" class="w-100 p-lg-0 p-3" style="border-radius: 20px;">
+                                        </div>
+                                        <hr class="d-lg-none">
+                                    
 
-    .toast-msg {
-      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-      background: #2e7d32; color: #fff; padding: 10px 22px;
-      border-radius: 20px; font-size: 13px; font-weight: 600;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 999;
-    }
-    .toast-msg.show { opacity: 1; }
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
 
-    .divider { height: 1px; background: #e8ecf0; margin: 32px 0; }
-  </style>
-</head>
-<body>
-
-
-<div class="hero">
-  <h1><i class="fa fa-birthday-cake me-2"></i>Employee Birthday Reminder</h1>
-  <p>Auto-send personalized birthday emails to employees — zero manual effort.</p>
-  <div class="badges">
-    <span class="badge-community">Community</span>
-    <span class="badge-enterprise">Enterprise</span>
-    <span class="badge-sh">Odoo.sh</span>
-  </div>
-</div>
-
-<div class="main">
-
-  <!-- FEATURES -->
-  <div class="section-head"><h4>Key Features</h4><p>Everything you need for seamless birthday automation</p></div>
-  <div class="two-col">
-    <div class="feature-pill">
-      <div class="pill-icon pink"><i class="fa fa-calendar-alt"></i></div>
-      <div><div class="pill-title">Set Date of Birth</div><div class="pill-desc">Configure birthdate per employee or customer.</div></div>
-    </div>
-    <div class="feature-pill">
-      <div class="pill-icon blue"><i class="fa fa-envelope-open-text"></i></div>
-      <div><div class="pill-title">Auto Birthday Email</div><div class="pill-desc">Emails sent automatically on the birthday.</div></div>
-    </div>
-    <div class="feature-pill">
-      <div class="pill-icon green"><i class="fa fa-clock"></i></div>
-      <div><div class="pill-title">Scheduler Config</div><div class="pill-desc">Set exact send time for automatic dispatch.</div></div>
-    </div>
-    <div class="feature-pill">
-      <div class="pill-icon amber"><i class="fa fa-paint-brush"></i></div>
-      <div><div class="pill-title">Custom Templates</div><div class="pill-desc">Personalize email templates with dynamic fields.</div></div>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- SCREENSHOTS -->
-  <div class="section-head"><h4>Screenshots</h4><p>See how it looks inside Odoo</p></div>
-
-  <div class="screenshot-card">
-    <h6>1. Bithday Notification</h6>
-    <div class="sc-desc">Birthday Notification Show like this in every employee.</div>
-
-    <img src="birthday.png" alt="Set Date of Birth"
-      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-    <div class="screenshot-placeholder" style="display:none;">
-      <i class="fa fa-image"></i>
-      
-    </div>
-  </div>
-
-
-  <div class="screenshot-card">
-    <h6>3. Birthday Email Preview</h6>
-    <div class="sc-desc">This is how the birthday greeting email looks when sent to the employee.</div>
-    <img src="image.png" alt="Email Preview"
-      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-    <div class="screenshot-placeholder" style="display:none;">
-      <i class="fa fa-image"></i>
-     
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-
-  <div class="linkedin-strip">
-    <div class="li-text">
-      <h5>Let's connect on LinkedIn!</h5>
-      <p>Feel free to reach out — always happy to connect and collaborate.</p>
-    </div>
-    <a class="btn-linkedin" href="https://www.linkedin.com/in/mausam-gurung-848527232/" target="_blank">
-      <i class="fab fa-linkedin"></i> Connect on LinkedIn
-    </a>
-  </div>
-
-</div>
-
-<div class="toast-msg" id="toast"></div>
-
-</body>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
 </html>
