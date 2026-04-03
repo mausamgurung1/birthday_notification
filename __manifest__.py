@@ -29,5 +29,5 @@
     'auto_install': False,
     'application': False,
     'license': 'LGPL-3',
-    "images":['static/src/image/banner.gif'],
+    "images":['static/src/image/banner.gif']
 }
