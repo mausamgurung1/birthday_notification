@@ -168,17 +168,7 @@
 </head>
 <body>
 
-<!-- NAV -->
-<!-- <div class="topnav">
-  <div class="brand"><i class="fa fa-birthday-cake"></i> BirthdayReminder</div>
-  <div class="nav-links">
-    <a href="#">Dashboard</a>
-    <a href="#">Employees</a>
-    <a href="#">Settings</a>
-  </div>
-</div> -->
 
-<!-- HERO -->
 <div class="hero">
   <h1><i class="fa fa-birthday-cake me-2"></i>Employee Birthday Reminder</h1>
   <p>Auto-send personalized birthday emails to employees — zero manual effort.</p>
@@ -244,13 +234,11 @@
   <div class="divider"></div>
 
 
-  <!-- LINKEDIN -->
   <div class="linkedin-strip">
     <div class="li-text">
       <h5>Let's connect on LinkedIn!</h5>
       <p>Feel free to reach out — always happy to connect and collaborate.</p>
     </div>
-    <!-- Replace YOUR_LINKEDIN_URL with your actual LinkedIn profile URL -->
     <a class="btn-linkedin" href="https://www.linkedin.com/in/mausam-gurung-848527232/" target="_blank">
       <i class="fab fa-linkedin"></i> Connect on LinkedIn
     </a>
@@ -260,57 +248,5 @@
 
 <div class="toast-msg" id="toast"></div>
 
-<script>
-const employees = [
-
-];
-const chipMap = {today:{cls:"chip-today",lbl:"🎂 Today"},soon:{cls:"chip-soon",lbl:"Soon"},later:{cls:"chip-later",lbl:""}};
-let sel = null;
-
-document.getElementById('empGrid').innerHTML = employees.map(e=>{
-  const c = chipMap[e.status];
-  return `<div class="emp-card" id="ec-${e.id}" onclick="pick(${e.id})">
-    <div class="emp-top">
-      <div class="avatar ${e.av}">${e.initials}</div>
-      <div><div class="emp-name">${e.name}</div><div class="emp-role">${e.role}</div></div>
-    </div>
-    <div class="emp-footer">
-      <span class="emp-dept">${e.dept} · ${e.bday}</span>
-      <span class="bday-chip ${c.cls}">${c.lbl||e.bday}</span>
-    </div>
-  </div>`;
-}).join('');
-
-function pick(id){
-  if(sel) document.getElementById('ec-'+sel)?.classList.remove('selected');
-  sel=id;
-  document.getElementById('ec-'+id)?.classList.add('selected');
-  const e=employees.find(x=>x.id===id);
-  document.getElementById('fTo').textContent=`${e.name} <${e.email}>`;
-  document.getElementById('fSubj').textContent=`Happy Birthday, ${e.name.split(' ')[0]}! 🎂`;
-  document.getElementById('fBody').value=`Hi ${e.name.split(' ')[0]},\n\nWishing you a very Happy Birthday from the entire team! 🎉\n\nThank you for your amazing contributions as our ${e.role}. We're grateful to have you in our ${e.dept} team.\n\nHope your day is filled with joy and celebration!\n\nWarm regards,\nHR Team`;
-}
-function sendEmail(){
-  if(!sel){toast("Please select an employee first.");return;}
-  toast("Email sent to "+employees.find(x=>x.id===sel).name+"! 🎉");
-}
-function copyMsg(){
-  if(!sel){toast("Nothing to copy.");return;}
-  navigator.clipboard?.writeText(document.getElementById('fBody').value);
-  toast("Message copied!");
-}
-function clearSel(){
-  if(sel) document.getElementById('ec-'+sel)?.classList.remove('selected');
-  sel=null;
-  document.getElementById('fTo').textContent='— select an employee —';
-  document.getElementById('fSubj').textContent='—';
-  document.getElementById('fBody').value='Select an employee to generate the birthday message.';
-}
-function toast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
-}
-</script>
 </body>
 </html>
