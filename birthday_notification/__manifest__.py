@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Mausam Gurung. See LICENSE file for full copyright and licensing details.
 {
-    'name': 'HR Birthday Notification',
+    'name': 'Employee Birthday Notification',
     'version' : "18.0.0.0",
     'category' : "Extra Tools",
     'summary': 'Show animated birthday popup & bar notification for employee birthdays',
