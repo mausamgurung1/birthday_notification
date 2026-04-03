@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
+# Part of Mausam Gurung. See LICENSE file for full copyright and licensing details.
 {
     'name': 'HR Birthday Notification',
-    'version': '18.0.1.0.0',
-    'category': 'Human Resources',
+    'version' : "18.0.0.0",
+    'category' : "Extra Tools",
+    'license': 'OPL-1',
     'summary': 'Show animated birthday popup & bar notification for employee birthdays',
-    'description': """
-        HR Birthday Notification
-        ========================
-        - Shows an animated top bar when any employee has a birthday today
-        - Displays a beautiful popup notification with balloon animations for 5-10 seconds
-        - Works for all logged-in Odoo users
-        - Fetches today's birthday employees from the backend
-    """,
-    'author': 'Mausam Gurung',
-    'depends': ['hr', 'web', 'mail'],
+    'description' : '''
+            Shows an animated top bar when any employee has a birthday today
+             Displays a beautiful popup notification with balloon animations for 5-10 seconds
+    ''',
+    "author": "Mausam Gurung",
+    'website': '',
+    'depends': ['hr', 'mail'],
     'data': [
         'security/ir.model.access.csv',
         'views/hr_employee_views.xml',
@@ -27,7 +26,6 @@
     },
     'installable': True,
     'auto_install': False,
-    'application': False,
-    'license': 'LGPL-3',
-    "images":['static/src/image/banner.gif']
+	"images":['static/description/Banner.gif'],
 }
+
