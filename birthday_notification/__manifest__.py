@@ -19,8 +19,8 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'hr_birthday_notification/static/src/css/birthday_notification.css',
-            'hr_birthday_notification/static/src/js/birthday_notification.js',
+            'birthday_notification/static/src/css/birthday_notification.css',
+            'birthday_notification/static/src/js/birthday_notification.js',
         ],
     },
     'installable': True,
